@@ -1,0 +1,32 @@
+[
+    {
+        "model": "levelupapi.game",
+        "pk": 1,
+        "fields": {
+            "title": "Clue",
+            "instructions": "",
+            "max_players": 8,
+            "type": 1
+        }
+    },
+    {
+        "model": "levelupapi.game",
+        "pk": 2,
+        "fields": {
+            "title": "Sorry",
+            "instructions": "",
+            "max_players": 8,
+            "type": 1
+        }
+    },
+    {
+        "model": "levelupapi.game",
+        "pk": 3,
+        "fields": {
+            "title": "Hearts",
+            "instructions": "",
+            "max_players": 4,
+            "type": 4
+        }
+    }
+]
