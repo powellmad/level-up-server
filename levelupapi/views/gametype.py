@@ -5,7 +5,6 @@ from rest_framework.response import Response
 from rest_framework import serializers
 from levelupapi.models import GameType
 
-
 class GameTypes(ViewSet):
     """Level up game types"""
 
