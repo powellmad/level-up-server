@@ -132,7 +132,7 @@ class Games(ViewSet):
 
         serializer = GameSerializer(
             games, many=True, context={'request': request})
-        return Response(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class GameSerializer(serializers.ModelSerializer):
     """JSON serializer for games

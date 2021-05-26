@@ -2,6 +2,7 @@ import json
 from rest_framework import status
 from rest_framework.test import APITestCase
 from levelupapi.models import GameType
+from levelupapi.models.game import Game
 
 
 class GameTests(APITestCase):
@@ -29,6 +30,9 @@ class GameTests(APITestCase):
         # Store the auth token
         self.token = json_response["token"]
 
+        self.client.credentials(HTTP_AUTHORIZATION=f'Token {self.token}')
+        # response.status_code == status.HTTP_201_CREATED
+        
         # Assert that a user was created
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
@@ -47,11 +51,10 @@ class GameTests(APITestCase):
         # DEFINE GAME PROPERTIES
         url = "/games"
         data = {
-            "gameTypeId": 1,
-            "skillLevel": 5,
+            "gametype": 1,
             "title": "Clue",
-            "maker": "Milton Bradley",
-            "numberOfPlayers": 6,
+            "max_players": 6,
+            "instructions": ""
         }
 
         # Make sure request is authenticated
@@ -68,6 +71,5 @@ class GameTests(APITestCase):
 
         # Assert that the properties on the created resource are correct
         self.assertEqual(json_response["title"], "Clue")
-        self.assertEqual(json_response["maker"], "Milton Bradley")
-        self.assertEqual(json_response["skill_level"], 5)
-        self.assertEqual(json_response["number_of_players"], 6)
+        self.assertEqual(json_response["instructions"], "")
+        self.assertEqual(json_response["max_players"], 6)
