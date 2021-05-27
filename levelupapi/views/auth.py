@@ -42,9 +42,6 @@ def register_user(request):
       request -- The full HTTP request object
     '''
 
-    # Load the JSON string of the request body into a dict
-    req_body = json.loads(request.body.decode())
-
     # Create a new user by invoking the `create_user` helper method
     # on Django's built-in User model
     new_user = User.objects.create_user(
@@ -68,5 +65,5 @@ def register_user(request):
     token = Token.objects.create(user=new_user)
 
     # Return the token to the client
-    data = json.dumps({"token": token.key})
-    return HttpResponse(data, content_type='application/json')
+    data = { 'token': token.key }
+    return Response(data, status=status.HTTP_201_CREATED)
